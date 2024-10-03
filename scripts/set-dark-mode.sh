@@ -1,7 +1,8 @@
 #!/bin/sh
 gsettings set org.gnome.desktop.interface color-scheme prefer-dark
 
-kitty +kitten themes --reload-in=all "Gruvbox Material Dark Hard"
+kitty_theme="custom-gruvbox-dark"
+kitty +kitten themes --reload-in=all "$kitty_theme"
 
 current_gtk3_theme=$(gsettings get org.gnome.desktop.interface gtk-theme)
 
