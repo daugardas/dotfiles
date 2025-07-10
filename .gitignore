@@ -39,5 +39,7 @@
 !.local/share/dark-mode.d/
 !.local/share/dark-mode.d/**
 
-!.bash*
+!.bash_logout
+!.bash_profile
+!.bash_rc
 !.gitignore
