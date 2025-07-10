@@ -1,0 +1,45 @@
+.text {
+ font-size: 1.5rem;
+}
+
+.network {
+    background-image: url("assets/signal.png");
+    background-repeat: no-repeat;
+    background-size: 1.5rem;
+    background-position: center;
+    min-height: 3rem;
+    min-width: 3rem;
+    border-radius: 100%;
+}
+
+.network:hover {
+    background-color: mix(#1f1a1d, #eae0e3, 70%);
+}
+
+.open-powermenu-button {
+    background-image: url("assets/logout.png");
+    background-repeat: no-repeat;
+    background-size: 1.5rem;
+    background-position: center;
+    min-height: 3rem;
+    min-width: 3rem;
+    border-radius: 100%;
+}
+
+.open-powermenu-button:hover {
+    background-color: mix(#1f1a1d, #eae0e3, 70%);
+}
+
+.open-settings-button {
+    background-image: url("assets/settings.png");
+    background-repeat: no-repeat;
+    background-size: 1.5rem;
+    background-position: center;
+    min-height: 3rem;
+    min-width: 3rem;
+    border-radius: 100%;
+}
+
+.open-settings-button:hover {
+    background-color: mix(#1f1a1d, #eae0e3, 70%);
+}

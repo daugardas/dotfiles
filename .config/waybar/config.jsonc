@@ -1,0 +1,241 @@
+{
+    // sourced from header module //
+    "layer": "bottom",
+    "position": "top",
+    "mod": "dock",
+    "height": 40,
+    "exclusive": true,
+    "passthrough": false,
+    "gtk-layer-shell": true,
+    "modules-left": [
+        "custom/left",
+        "custom/rofi",
+        "group/cpu_temps",
+        "group/gpu_temps",
+        "group/audio_group",
+        "custom/right"
+    ],
+    "modules-center": [
+        "custom/left",
+        "hyprland/workspaces",
+        "custom/right"
+    ],
+    "modules-right": [
+        "custom/left",
+        "tray",
+        // "network",
+        "clock",
+        "custom/right"
+    ],
+    "group/cpu_temps": {
+        "orientation": "inherit",
+        "drawer": {
+            "transition-duration": 500,
+            "children-class": "cpu-temp",
+            "transition-left-to-right": true
+        },
+        "modules": [
+            "temperature#cpu",
+            "cpu"
+        ]
+    },
+    "group/gpu_temps": {
+        "orientation": "inherit",
+        "drawer": {
+            "transition-duration": 500,
+            "children-class": "gpu-temp",
+            "transition-left-to-right": true
+        },
+        "modules": [
+            "temperature#gpu_junction",
+            "temperature#gpu_edge",
+            "temperature#gpu_mem"
+        ]
+    },
+    // "cpu": {},
+    "temperature#cpu": {
+        "hwmon-path": "/sys/class/hwmon/hwmon5/temp1_input",
+        "critical-threshold": 80,
+        "format": "{icon} CPU: {temperatureC}°C",
+        "format-icons": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+        ]
+    },
+    "temperature#gpu_junction": {
+        "hwmon-path": "/sys/class/hwmon/hwmon3/temp2_input",
+        "critical-threshold": 80,
+        "format": "GPU: {temperatureC}°C",
+        "format-icons": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+        ],
+        "tooltip": true,
+        "tooltip-format": "GPU MAIN"
+    },
+    "temperature#gpu_edge": {
+        "hwmon-path": "/sys/class/hwmon/hwmon3/temp1_input",
+        "critical-threshold": 80,
+        "format": "{temperatureC}°C",
+        "tooltip": true,
+        "tooltip-format": "GPU EDGE"
+    },
+    "temperature#gpu_mem": {
+        "hwmon-path": "/sys/class/hwmon/hwmon3/temp3_input",
+        "critical-threshold": 80,
+        "format": "{temperatureC}°C",
+        "tooltip": true,
+        "tooltip-format": "GPU MEM"
+    },
+    "network": {
+        "tooltip": true,
+        // "format-wifi": "<span foreground='#FF8B49'> {bandwidthDownBytes}</span> <span foreground='#FF6962'> {bandwidthUpBytes}</span>",
+        // "format-ethernet": "<span foreground='#FF8B49'> {bandwidthDownBytes}</span> <span foreground='#FF6962'> {bandwidthUpBytes}</span>",
+        "tooltip-format": "Network: <big><b>{essid}</b></big>\nSignal strength: <b>{signaldBm}dBm ({signalStrength}%)</b>\nFrequency: <b>{frequency}MHz</b>\nInterface: <b>{ifname}</b>\nIP: <b>{ipaddr}/{cidr}</b>\nGateway: <b>{gwaddr}</b>\nNetmask: <b>{netmask}</b>",
+        "format-linked": "󰈀 {ifname} (No IP)",
+        "format-disconnected": " 󰖪 ",
+        "format-ethernet": "",
+        "format-wifi": "",
+        "tooltip-format-disconnected": "Disconnected",
+        "interval": 10
+        // "on-click-right": "~/.config/waybar/network.py"
+    },
+    "custom/rofi": {
+        "format": "  {}",
+        "on-click": "~/.config/hypr/scripts/Rofi-launcher.sh"
+    },
+    "hyprland/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": true,
+        "on-click": "activate",
+        "format": "{name} {windows}",
+        "format-window-separator": " ", // No separator between window icons
+        "window-rewrite-default": "?", // Can be an icon (e.g., "?") for unrecognized apps
+        "window-rewrite": {
+            "title<.*youtube.*>": "", // Windows whose titles contain "youtube"
+            "class<firefox>": "", // Windows whose classes are "firefox"
+            "class<firefox> title<.*github.*>": "", // Windows whose class is "firefox" and title contains "github". Note that "class" always comes first.
+            "ghostty": "", // Windows that contain "foot" in either class or title. For optimization reasons, it will only match against a title if at least one other window explicitly matches against a title.
+            "code": "󰨞",
+            "dolphin": "",
+            "steam": "󰓓",
+            "title<.*Discord.*>": "",
+            "heroic": ""
+        }
+    },
+    "battery": {
+        "states": {
+            "good": 95,
+            "warning": 30,
+            "critical": 20
+        },
+        "format": "{icon} {capacity}%",
+        "format-charging": " {capacity}%",
+        "format-plugged": " {capacity}%",
+        "format-alt": "{time} {icon}",
+        "format-icons": [
+            "󰂎",
+            "󰁺",
+            "󰁻",
+            "󰁼",
+            "󰁽",
+            "󰁾",
+            "󰁿",
+            "󰂀",
+            "󰂁",
+            "󰂂",
+            "󰁹"
+        ]
+    },
+    "group/audio_group": {
+        "orientation": "inherit",
+        // "drawer": {
+        //     "transition-duration": 500,
+        //     "children-class": "audio",
+        //     "transition-left-to-right": true
+        // },
+        "modules": [
+            "pulseaudio#output",
+            "pulseaudio#input"
+        ]
+    },
+    "pulseaudio#input": {
+        "format-source": " {volume}%",
+        "format-source-muted": " off",
+        "format": "{format_source}",
+        "on-click": "pavucontrol -t 3",
+        "on-click-middle": "~/.config/hypr/volumecontrol.sh -i m",
+        "on-scroll-up": "~/.config/hypr/volumecontrol.sh -i i",
+        "on-scroll-down": "~/.config/hypr/volumecontrol.sh -i d",
+        "scroll-step": 5,
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": [
+                "",
+                "",
+                ""
+            ]
+        }
+    },
+    "pulseaudio#output": {
+        "format": "{icon} {volume}",
+        "format-muted": "婢",
+        "on-click": "pavucontrol -t 3",
+        "on-click-middle": "~/.config/hypr/volumecontrol.sh -o m",
+        "on-scroll-up": "~/.config/hypr/volumecontrol.sh -o i",
+        "on-scroll-down": "~/.config/hypr/volumecontrol.sh -o d",
+        "scroll-step": 5,
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": [
+                "",
+                "",
+                ""
+            ]
+        }
+    },
+    // "group/"
+    "tray": {
+        "icon-size": 20,
+        "spacing": 10,
+        "icons": {
+            "nm-applet": "/home/daugardas/.icons/Flat-Remix-Blue-Dark/panel/nm-device-wired.svg",
+            "blueman": "/home/daugardas/.icons/Flat-Remix-Blue-Dark/panel/blueman.svg",
+            "steam": "/home/daugardas/.icons/Flat-Remix-Blue-Dark/panel/steam_tray_mono.svg",
+            "discord": "/home/daugardas/.icons/Flat-Remix-Blue-Dark/panel/discord-tray.svg"
+        }
+    },
+    "clock": {
+        "format": " {:%H:%M}",
+        // "on-click": "~/.config/eww/scripts/toggle_control_center.sh"
+    },
+    // modules for padding //
+    "custom/left": {
+        "format": " ",
+        "interval": "once",
+        "tooltip": false
+    },
+    "custom/right": {
+        "format": " ",
+        "interval": "once",
+        "tooltip": false
+    },
+}
