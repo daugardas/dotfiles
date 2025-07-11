@@ -46,4 +46,7 @@
 !.bash_logout
 !.bash_profile
 !.bash_rc
+!.zprofile
+!.zshenv
+!.zshrc
 !.gitignore
