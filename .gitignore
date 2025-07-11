@@ -32,7 +32,11 @@
 !.icons/
 !.icons/Gruv-Cursor/
 !.icons/Gruv-Cursor/**
-!.local/
+!.icons/Gruvbox-Dark/
+!.icons/Gruvbox-Dark/panel/
+!.icons/Gruvbox-Dark/panel/16/
+!.icons/Gruvbox-Dark/panel/16/**
+.local/
 !.local/share/
 !.local/share/light-mode.d/
 !.local/share/light-mode.d/**
