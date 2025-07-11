@@ -18,12 +18,35 @@ window#waybar {
 #backlight,
 #custom-right,
 #custom-left,
-#cpu_temps, #gpu_temps, #network, #clock, #tray {
+#cpu_temps, 
+#gpu_temps, 
+#network, 
+#clock, 
+#tray, 
+#power-profiles-daemon,
+#custom-weather,
+#mpris {
    color: @main-color;
    background: #242424;
    margin: 4px 0px 4px 0px;
    opacity: 1;
    border: 0px solid #181825;
+}
+
+#power-profiles-daemon {
+    padding-right: 5px;
+}
+
+#power-profiles-daemon.power-saver {
+    color: green;
+}
+
+#power-profiles-daemon.balanced {
+    color: #eebd35;
+}
+
+#power-profiles-daemon.performance {
+    color: #ff0000;
 }
 
 tooltip {
@@ -80,7 +103,7 @@ tooltip {
 #backlight {
     color: #FF8B49;
     padding-left: 0px;
-    padding-right: 19px;
+    padding-right: 5px;
 }
 
 #audio_group {
@@ -96,7 +119,13 @@ tooltip {
 #battery {
     color: #458588;
     padding-left: 0px;
-    padding-right: 0px;
+    padding-right: 5px;
+}
+
+#custom-weather {
+    color: #458588;
+    padding-left: 0px;
+    padding-right: 5px;
 }
 
 #tray {

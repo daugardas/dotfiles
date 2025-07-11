@@ -9,10 +9,13 @@
     "gtk-layer-shell": true,
     "modules-left": [
         "custom/left",
-        "custom/rofi",
+        // "custom/rofi",
+        "power-profiles-daemon",
+        "group/laptop",
         "group/cpu_temps",
         "group/gpu_temps",
         "group/audio_group",
+        "custom/weather",
         "custom/right"
     ],
     "modules-center": [
@@ -22,11 +25,51 @@
     ],
     "modules-right": [
         "custom/left",
+        "mpris",
         "tray",
         // "network",
         "clock",
         "custom/right"
     ],
+    "group/laptop": {
+        "orientation": "inherit",
+        "modules": [
+            "backlight",
+            "battery",
+        ]
+    },
+    "backlight": {
+        "interval": 2,
+        "align": 0,
+        "rotate": 0,
+        "format": "{icon} {percent}%",
+        "format-icons": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+        ],
+        "tooltip-format": "backlight {percent}%",
+        "icon-size": 10,
+        "on-click": "",
+        "on-click-middle": "",
+        "on-click-right": "",
+        "on-update": "",
+        "on-scroll-up": "$HOME/.config/hypr/scripts/brightness.sh --inc",
+        "on-scroll-down": "$HOME/.config/hypr/scripts/brightness.sh --dec",
+        "smooth-scrolling-threshold": 1,
+    },
     "group/cpu_temps": {
         "orientation": "inherit",
         "drawer": {
@@ -217,10 +260,10 @@
         "icon-size": 20,
         "spacing": 10,
         "icons": {
-            "nm-applet": "/home/daugardas/.icons/Flat-Remix-Blue-Dark/panel/nm-device-wired.svg",
-            "blueman": "/home/daugardas/.icons/Flat-Remix-Blue-Dark/panel/blueman.svg",
-            "steam": "/home/daugardas/.icons/Flat-Remix-Blue-Dark/panel/steam_tray_mono.svg",
-            "discord": "/home/daugardas/.icons/Flat-Remix-Blue-Dark/panel/discord-tray.svg"
+            "nm-applet": "/home/daugardas/.icons/Gruvbox-Light/panel/16/nm-device-wired.svg",
+            "blueman": "/home/daugardas/.icons/Gruvbox-Light/panel/16/blueman.svg",
+            "steam": "/home/daugardas/.icons/Gruvbox-Light/panel/16/steam_tray_mono.svg",
+            "discord": "/home/daugardas/.icons/Gruvbox-Light/panel/16/discord-tray.svg"
         }
     },
     "clock": {
@@ -237,5 +280,55 @@
         "format": " ",
         "interval": "once",
         "tooltip": false
+    },
+    "power-profiles-daemon": {
+        "format": "{icon} ",
+        "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+        "tooltip": true,
+        "format-icons": {
+            "default": "",
+            "performance": "",
+            "balanced": "",
+            "power-saver": ""
+        }
+    },
+    "custom/weather": {
+        "format": "{}",
+        "format-alt": "{alt}: {}",
+        "format-alt-click": "click",
+        "interval": 3600,
+        "return-type": "json",
+        "exec": "$HOME/.config/waybar/scripts/weather.sh",
+        "exec-if": "ping wttr.in -c1",
+        "tooltip": true,
+    },
+    "mpris": {
+        "interval": 10,
+        "format": "{player_icon} ",
+        "format-paused": "{status_icon} <i>{dynamic}</i>",
+        "on-click-middle": "playerctl play-pause",
+        "on-click": "playerctl previous",
+        "on-click-right": "playerctl next",
+        "scroll-step": 5.0,
+        "on-scroll-up": "$HOME/.config/hypr/scripts/volume.sh --inc",
+        "on-scroll-down": "$HOME/.config/hypr/scripts/volume.sh --dec",
+        "smooth-scrolling-threshold": 1,
+        "player-icons": {
+            "chromium": "",
+            "default": "",
+            "firefox": "",
+            "kdeconnect": "",
+            "mopidy": "",
+            "mpv": "󰐹",
+            "spotify": "",
+            "vlc": "󰕼",
+        },
+        "status-icons": {
+            "paused": "󰐎",
+            "playing": "",
+            "stopped": "",
+        },
+        // "ignored-players": ["firefox"]
+        "max-length": 30,
     },
 }
