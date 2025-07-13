@@ -272,10 +272,10 @@
         "icon-size": 20,
         "spacing": 10,
         "icons": {
-            "nm-applet": "/home/daugardas/.icons/Gruvbox-Light/panel/16/nm-device-wired.svg",
-            "blueman": "/home/daugardas/.icons/Gruvbox-Light/panel/16/blueman.svg",
-            "steam": "/home/daugardas/.icons/Gruvbox-Light/panel/16/steam_tray_mono.svg",
-            "discord": "/home/daugardas/.icons/Gruvbox-Light/panel/16/discord-tray.svg"
+            "nm-applet": "nm-device-wired",
+            "blueman": "blueman",
+            "steam": "steam_tray_mono",
+            "discord": "discord-tray"
         }
     },
     "clock": {

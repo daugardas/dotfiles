@@ -111,7 +111,6 @@ plugins=(
   git
   bashmarks
   colored-man-pages
-  tmux-autoattach
   sudo
 )
 
